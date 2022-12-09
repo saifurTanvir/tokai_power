@@ -17,11 +17,11 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('/about_us', function () {
+Route::get('about_us', function () {
     return view('about_us');
 })->name('about_us');
 
-Route::get('/career', function () {
+Route::get('career', function () {
     return view('career');
 })->name('career');
 
@@ -32,3 +32,7 @@ Route::get('product_detail', function(){
 Route::get('job_post', function(){
     return view('job_post');
 })->name('job_post');
+
+Route::get('client', function(){
+    return view('clients');
+})->name('client');

@@ -4,8 +4,21 @@
 
   <main id="main" class="mt-5">
 
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="{{route('index')}}">Home</a></li>
+          <li>About Us</li>
+        </ol>
+        <h2>About us</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
     <!-- ======= Features Section ======= -->
-    <section id="about_founder" class="features">
+    <section id="blog" class="blog">
 
       <div class="container" data-aos="fade-up">
 

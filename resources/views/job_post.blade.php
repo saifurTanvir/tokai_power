@@ -3,6 +3,7 @@
 @section('content')
 
   <main id="main" class="mt-5">
+
     <!-- ======= Job Circular Section ======= -->
     <section id="job_circular" class="services">
       <div class="container" data-aos="fade-up">
@@ -39,8 +40,8 @@
 
       </div>
     </section><!-- End Services Section -->
-  </main><!-- End #main -->
 
+  </main><!-- End #main -->
 @endsection
   
   

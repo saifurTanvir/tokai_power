@@ -6,49 +6,46 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero d-flex align-items-center">
 
-    <div class="container">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 hero-img" data-aos="zoom-out" data-aos-delay="100">
+      <div id="demo" class="carousel slide" data-ride="carousel">
 
-        <div class="col-lg-12 hero-img" data-aos="zoom-out" data-aos-delay="100">
-          <div id="demo" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+          <li data-target="#demo" data-slide-to="3"></li>
+          <li data-target="#demo" data-slide-to="4"></li>
+        </ul>
 
-            <!-- Indicators -->
-            <ul class="carousel-indicators">
-              <li data-target="#demo" data-slide-to="0" class="active"></li>
-              <li data-target="#demo" data-slide-to="1"></li>
-              <li data-target="#demo" data-slide-to="2"></li>
-              <li data-target="#demo" data-slide-to="3"></li>
-              <li data-target="#demo" data-slide-to="4"></li>
-            </ul>
-
-            <!-- The slideshow -->
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="images/slider/390tokai.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="images/slider/618tokai.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="images/slider/713tokai.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="images/slider/788tokai.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="images/slider/907tokai.jpg" class="img-fluid" alt="">
-              </div>
-            </div>
-
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-              <span class="carousel-control-next-icon"></span>
-            </a>
-
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/slider/390tokai.jpg" class="img-fluid; height: auto;" alt="">
+          </div>
+          <div class="carousel-item">
+            <img src="images/slider/618tokai.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="carousel-item">
+            <img src="images/slider/713tokai.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="carousel-item">
+            <img src="images/slider/788tokai.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="carousel-item">
+            <img src="images/slider/907tokai.jpg" class="img-fluid" alt="">
           </div>
         </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+
+      </div>
     </div>
 
   </section><!-- End Hero -->

@@ -3,6 +3,20 @@
 @section('content')
 
   <main id="main" class="mt-5">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="{{route('index')}}">Home</a></li>
+          <li>Career</li>
+        </ol>
+        <h2>Career</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
     <!-- ======= Job Circular Section ======= -->
     <section id="job_circular" class="services">
 
