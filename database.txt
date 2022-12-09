@@ -1,0 +1,298 @@
+CREATE TABLE `tokai_power`.`test`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+
+
+1. carosels: 
+	id
+	image
+	title
+	description
+	status (1 => active, 2 => inactive)
+	created_at
+	updated_at
+	created_by
+	updated_by
+	
+CREATE TABLE `tokai_power`.`carosels`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `image` varchar(255),
+  `title` varchar(255),
+  `description` text,
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+
+2. key_persions:
+	id
+	name
+	designation
+	speech
+	status (1 => active, 2 => inactive)
+	created_at
+	updated_at
+	created_by
+	updated_by
+	
+CREATE TABLE `tokai_power`.`key_persions`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `name` varchar(255),
+  `designation` varchar(500),
+  `speech` text,
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+	
+3. mission_vission:
+	id
+	message_type (1 = mission, 2 => vission)
+	message
+	status (1 => active, 2 => inactive)
+	created_at
+	updated_at
+	created_by
+	updated_by
+	
+CREATE TABLE `tokai_power`.`mission_vission`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `message_type` tinyint(5) COMMENT '1 = mission, 2 => vission',
+  `message` varchar(500),
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+
+4. acheivements
+	id
+	image (file)
+	certificate (fiel)
+	certification_name
+	certification_detail
+	learning
+	status (1 => active, 2 => inactive)
+	created_at
+	updated_at
+	created_by
+	updated_by
+	
+CREATE TABLE `tokai_power`.`acheivements`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `image` varchar(255),
+  `certificate` varchar(255),
+  `certification_name` varchar(255),
+  `certification_detail` varchar(500),
+  `learning` varchar(500),
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+	
+5. csr
+	id
+	image (file)
+	title
+	description
+	status (1 => active, 2 => inactive)
+	created_at
+	updated_at
+	created_by
+	updated_by
+	
+CREATE TABLE `tokai_power`.`csr`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `image` varchar(255),
+  `title` varchar(255),
+  `description` varchar(500),
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+
+6. about_founder
+	id
+	name
+	education
+	career
+	speech
+	status (1 => active, 2 => inactive)
+	created_at
+	updated_at
+	created_by
+	updated_by
+	
+CREATE TABLE `tokai_power`.`about_founder`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `name` varchar(255),
+  `education` varchar(500),
+  `career` varchar(500),
+  `speech` varchar(500),
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+	
+7. products
+	id
+	type
+	name
+	description
+	quantity
+	images
+	status (1 => active, 2 => inactive)
+	created_at
+	updated_at
+	created_by
+	updated_by
+	
+CREATE TABLE `tokai_power`.`products`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `type` varchar(255) COMMENT "Product Types",
+  `name` varchar(255),
+  `description` varchar(500),
+  `quantity` int(11),
+  `images` text,
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+	
+8. services
+	id
+	name
+	description
+	image
+	status (1 => active, 2 => inactive)
+	created_at
+	updated_at
+	created_by
+	updated_by
+	
+CREATE TABLE `tokai_power`.`services`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `name` varchar(255),
+  `description` varchar(500),
+  `image` varchar(255),
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+	
+9. clients
+	id
+	parent_company
+	company
+	address
+	product
+	capacity
+	quantity
+	status (1 => active, 2 => inactive)
+	created_at
+	updated_at
+	created_by
+	updated_by
+	
+CREATE TABLE `tokai_power`.`clients`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `parent_company` varchar(255),
+  `company` varchar(255),
+  `address` varchar(255),
+  `product` varchar(255),
+  `capacity` varchar(255),
+  `quantity` tinyint(5),
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+
+
+10. job_circular
+	id
+	post_name
+	contaxt
+	responsibility
+	nature
+	requirment_education
+	requirment_experience
+	salary
+	benefits
+	status (1 => active, 2 => inactive)
+	created_at
+	updated_at
+	created_by
+	updated_by
+	
+CREATE TABLE `tokai_power`.`job_circular`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `post_name` varchar(255),
+  `contaxt` text,
+  `responsibility` text,
+  `nature` text,
+  `requirment_education` text,
+  `requirment_experience` text,
+  `salary` int(11),
+  `benefits` text,
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+	
+11. cv
+	id
+	job_id (foreign key) (0 => using from, !0 => against a job circular)
+	name
+	email
+	phone
+	description
+	
+CREATE TABLE `tokai_power`.`csr`(  
+  `id` INT(11) AUTO_INCREMENT,
+  `job_id` tinyint(5) COMMENT "0 => using from, !0 => against a job circular",
+  `name` varchar(255),
+  `email` varchar(255),
+  `phone` varchar(255),
+  `description` varchar(500),
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
