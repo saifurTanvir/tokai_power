@@ -17,10 +17,12 @@ Route::group([
     $router->resource('mission-and-visions', MissionAndVisionController::class);
     $router->resource('key-people', KeyPersonController::class);
     $router->resource('job-circulars', JobCircularController::class);
-    $router->resource('c-vs', CvController::class);
-    $router->resource('c-s-rs', CsrController::class);
+    $router->resource('cv', CvController::class);
+    $router->resource('csr', CsrController::class);
     $router->resource('clients', ClientController::class);
     $router->resource('acheivements', AcheivementController::class);
     $router->resource('about-founders', AboutFounderController::class);
     $router->resource('carosels', CaroselController::class);
+    $router->resource('about_us', AboutUsController::class);
+    $router->resource('product_category', ProductCategoryController::class);
 });

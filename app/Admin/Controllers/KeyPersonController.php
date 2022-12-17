@@ -4,79 +4,69 @@ namespace App\Admin\Controllers;
 
 use App\Models\KeyPerson;
 use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
 class KeyPersonController extends AdminController
 {
-    /**
-     * Title for current resource.
-     *
-     * @var string
-     */
-    protected $title = 'KeyPerson';
+    protected $title = 'Key Person';
 
-    /**
-     * Make a grid builder.
-     *
-     * @return Grid
-     */
     protected function grid()
     {
         $grid = new Grid(new KeyPerson());
 
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
+        $grid->column('image', __('image'))->image("/uploads/");
         $grid->column('designation', __('Designation'));
-        $grid->column('speech', __('Speech'));
+        $grid->column('speech', __('Speech'))->display(function ($speech){
+            return "". $speech ."";
+        });
         $grid->column('status', __('Status'));
-        $grid->column('created_by', __('Created by'));
-        $grid->column('updated_by', __('Updated by'));
+        $grid->column('user.name', __('Created by'));
+        $grid->column('user.name', __('Updated by'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
         return $grid;
     }
 
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
     protected function detail($id)
     {
         $show = new Show(KeyPerson::findOrFail($id));
 
         $show->field('id', __('Id'));
         $show->field('name', __('Name'));
+        $show->field('image', __('image'))->image("/uploads/");
         $show->field('designation', __('Designation'));
         $show->field('speech', __('Speech'));
         $show->field('status', __('Status'));
-        $show->field('created_by', __('Created by'));
-        $show->field('updated_by', __('Updated by'));
+        $show->field('user.name', __('Created by'));
+        $show->field('user.name', __('Updated by'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
         return $show;
     }
 
-    /**
-     * Make a form builder.
-     *
-     * @return Form
-     */
     protected function form()
     {
         $form = new Form(new KeyPerson());
 
         $form->text('name', __('Name'));
+        $form->image('image', __('image'));
         $form->text('designation', __('Designation'));
-        $form->textarea('speech', __('Speech'));
+        $form->ckeditor('speech', __('Speech'));
         $form->switch('status', __('Status'))->default(1);
-        $form->number('created_by', __('Created by'));
-        $form->number('updated_by', __('Updated by'));
+        $form->saving(function (Form $form) {
+            if($form->isCreating()){
+                $form->created_by = Admin::user()->id;
+            }else{
+                $form->updated_by = Admin::user()->id;
+            }
+        });
 
         return $form;
     }

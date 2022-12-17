@@ -2,7 +2,8 @@
 SQLyog Ultimate v11.11 (64 bit)
 MySQL - 5.5.5-10.4.17-MariaDB : Database - tokai_power
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -84,6 +85,7 @@ CREATE TABLE `clients` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_company` varchar(255) DEFAULT NULL,
   `company` varchar(255) DEFAULT NULL,
+  `logo` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `product` varchar(255) DEFAULT NULL,
   `capacity` varchar(255) DEFAULT NULL,
@@ -169,6 +171,7 @@ DROP TABLE IF EXISTS `key_persions`;
 CREATE TABLE `key_persions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `designation` varchar(500) DEFAULT NULL,
   `speech` text DEFAULT NULL,
   `status` tinyint(5) DEFAULT 1,
@@ -187,7 +190,7 @@ DROP TABLE IF EXISTS `mission_vission`;
 
 CREATE TABLE `mission_vission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `message_type` tinyint(5) DEFAULT NULL COMMENT '1 = mission, 2 => vission',
+  `message_type` enum("Mission", "Vision") DEFAULT "MISSION",
   `message` varchar(500) DEFAULT NULL,
   `status` tinyint(5) DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,

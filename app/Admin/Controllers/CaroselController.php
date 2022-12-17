@@ -4,30 +4,21 @@ namespace App\Admin\Controllers;
 
 use App\Models\Carosel;
 use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
 class CaroselController extends AdminController
 {
-    /**
-     * Title for current resource.
-     *
-     * @var string
-     */
     protected $title = 'Carosel';
 
-    /**
-     * Make a grid builder.
-     *
-     * @return Grid
-     */
     protected function grid()
     {
         $grid = new Grid(new Carosel());
 
         $grid->column('id', __('Id'));
-        $grid->column('image', __('Image'));
+        $grid->column('image', __('Image'))->image("/uploads/");
         $grid->column('title', __('Title'));
         $grid->column('description', __('Description'));
         $grid->column('status', __('Status'));
@@ -39,18 +30,12 @@ class CaroselController extends AdminController
         return $grid;
     }
 
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
     protected function detail($id)
     {
         $show = new Show(Carosel::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('image', __('Image'));
+        $show->field('image', __('Image'))->image("/uploads/");
         $show->field('title', __('Title'));
         $show->field('description', __('Description'));
         $show->field('status', __('Status'));
@@ -62,11 +47,6 @@ class CaroselController extends AdminController
         return $show;
     }
 
-    /**
-     * Make a form builder.
-     *
-     * @return Form
-     */
     protected function form()
     {
         $form = new Form(new Carosel());
@@ -75,8 +55,13 @@ class CaroselController extends AdminController
         $form->text('title', __('Title'));
         $form->textarea('description', __('Description'));
         $form->switch('status', __('Status'))->default(1);
-        $form->number('created_by', __('Created by'));
-        $form->number('updated_by', __('Updated by'));
+        $form->saving(function (Form $form) {
+            if($form->isCreating()){
+                $form->created_by = Admin::user()->id;
+            }else{
+                $form->updated_by = Admin::user()->id;
+            }
+        });
 
         return $form;
     }

@@ -36,6 +36,7 @@ CREATE TABLE `tokai_power`.`carosels`(
 2. key_persions:
 	id
 	name
+	image
 	designation
 	speech
 	status (1 => active, 2 => inactive)
@@ -47,6 +48,7 @@ CREATE TABLE `tokai_power`.`carosels`(
 CREATE TABLE `tokai_power`.`key_persions`(  
   `id` INT(11) AUTO_INCREMENT,
   `name` varchar(255),
+  `image` varchar(255),
   `designation` varchar(500),
   `speech` text,
   `status` TINYINT(5) DEFAULT 1,
@@ -59,7 +61,7 @@ CREATE TABLE `tokai_power`.`key_persions`(
 	
 3. mission_vission:
 	id
-	message_type (1 = mission, 2 => vission)
+	message_type ("Mission", "Vision")
 	message
 	status (1 => active, 2 => inactive)
 	created_at
@@ -69,7 +71,7 @@ CREATE TABLE `tokai_power`.`key_persions`(
 	
 CREATE TABLE `tokai_power`.`mission_vission`(  
   `id` INT(11) AUTO_INCREMENT,
-  `message_type` tinyint(5) COMMENT '1 = mission, 2 => vission',
+  `message_type` enum("Mission", "Vision") DEFAULT "Mission",
   `message` varchar(500),
   `status` TINYINT(5) DEFAULT 1,
   `created_by` INT(11),
@@ -213,6 +215,7 @@ CREATE TABLE `tokai_power`.`services`(
 	id
 	parent_company
 	company
+	logo
 	address
 	product
 	capacity
@@ -227,6 +230,7 @@ CREATE TABLE `tokai_power`.`clients`(
   `id` INT(11) AUTO_INCREMENT,
   `parent_company` varchar(255),
   `company` varchar(255),
+  `logo` varchar(255),
   `address` varchar(255),
   `product` varchar(255),
   `capacity` varchar(255),
@@ -289,6 +293,35 @@ CREATE TABLE `tokai_power`.`csr`(
   `email` varchar(255),
   `phone` varchar(255),
   `description` varchar(500),
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+
+12. about_us:
+    id
+    image
+
+CREATE TABLE `about_us`(
+  `id` INT(11) AUTO_INCREMENT,
+  `image` varchar(255),
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+
+13. product_category:
+    category_name
+
+CREATE TABLE `product_category`(
+  `id` INT(11) AUTO_INCREMENT,
+  `category_name` varchar(255),
   `status` TINYINT(5) DEFAULT 1,
   `created_by` INT(11),
   `updated_by` INT(11),

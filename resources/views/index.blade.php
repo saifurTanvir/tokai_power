@@ -4,7 +4,7 @@
 
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex align-items-center">
+  <section id="hero" class="hero d-flex align-items-center carosel_styles">
 
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 hero-img" data-aos="zoom-out" data-aos-delay="100">
       <div id="demo" class="carousel slide" data-ride="carousel">
@@ -19,24 +19,13 @@
         </ul>
 
         <!-- The slideshow -->
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="images/slider/390tokai.jpg" class="img-fluid; height: auto;" alt="">
-          </div>
-          <div class="carousel-item">
-            <img src="images/slider/618tokai.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="carousel-item">
-            <img src="images/slider/713tokai.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="carousel-item">
-            <img src="images/slider/788tokai.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="carousel-item">
-            <img src="images/slider/907tokai.jpg" class="img-fluid" alt="">
-          </div>
+        <div class="carousel-inner"  >
+          @foreach($carosels AS $key => $carosel)
+            <div class="carousel-item @if($key == 0) active @endif">
+              <img src="{{asset('/uploads/'.$carosel->image)}}" class="img-fluid;" alt="">
+            </div>
+          @endforeach
         </div>
-
         <!-- Left and right controls -->
         <a class="carousel-control-prev" href="#demo" data-slide="prev">
           <span class="carousel-control-prev-icon"></span>
@@ -64,7 +53,7 @@
         <div class="row">
 
           <div class="col-lg-6">
-            <img src="images/power_station.jpg" class="img-fluid" alt="">
+            <img src="{{asset('/uploads/'.$aboutUs->image)}}" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
@@ -129,7 +118,7 @@
             <div class="count-box">
               <i class="bi bi-emoji-smile"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="{{$totalClient}}" data-purecounter-duration="1" class="purecounter"></span>
                 <p>Happy Clients</p>
               </div>
             </div>
@@ -149,7 +138,7 @@
             <div class="count-box">
               <i class="bi bi-headset" style="color: #15be56;"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="{{$totalProduct}}" data-purecounter-duration="1" class="purecounter"></span>
                 <p>Number of Products</p>
               </div>
             </div>
@@ -183,144 +172,31 @@
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">Substation</li>
-              <li data-filter=".filter-card">Generator</li>
-              <li data-filter=".filter-web">Meter</li>
-              <li data-filter=".filter-bbt">BBT</li>
-              <li data-filter=".filter-switchgear">Switchgear & PFI Panels</li>
-              <li data-filter=".filter-transformer">Transformer</li>
+            <li data-filter="*" class="filter-active">All</li>
+            @foreach($productCategories AS $productCategory)
+                <li data-filter=".{{str_replace(' ', '_', $productCategory->category_name)}}">{{$productCategory->category_name}}</li>
+              @endforeach
             </ul>
           </div>
         </div>
 
         <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-transformer filter-transformer filter-bbt">
-            <div class="portfolio-wrap">
-              <img src="images/moin644tokai.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 1</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="images/moin644tokai.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
-                  <a href="{{route('product_detail')}}" title="More Details"><i class="bi bi-link"></i></a>
+          @foreach($products As $product)
+            <div class="col-lg-4 col-md-6 portfolio-item {{str_replace(' ', '_', $product->type)}}">
+              <div class="portfolio-wrap">
+                <img src="{{asset('/uploads/'.$product->images)}}" class="img-fluid" alt="" style="height: 85vh;width: 100%;object-fit: cover;">
+                <div class="portfolio-info">
+                  <h4>App 1</h4>
+                  <p>App</p>
+                  <div class="portfolio-links">
+                    <a href="{{asset('/uploads/'.$product->images)}}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$product->name}}"><i class="bi bi-plus"></i></a>
+                    <a href="{{route('product_detail')}}" title="More Details"><i class="bi bi-link"></i></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web filter-bbt">
-            <div class="portfolio-wrap">
-              <img src="images/moin903tokai.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 3</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="images/moin903tokai.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Web 3"><i class="bi bi-plus"></i></a>
-                  <a href="{{route('product_detail')}}" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-switchgear filter-transformer">
-            <div class="portfolio-wrap">
-              <img src="images/moin893tokai.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 2</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="images/moin893tokai.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="App 2"><i class="bi bi-plus"></i></a>
-                  <a href="{{route('product_detail')}}" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card filter-transformer filter-bbt">
-            <div class="portfolio-wrap">
-              <img src="images/moin808tokai.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Card 2</h4>
-                <p>Card</p>
-                <div class="portfolio-links">
-                  <a href="images/moin808tokai.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Card 2"><i class="bi bi-plus"></i></a>
-                  <a href="{{route('product_detail')}}" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web filter-switchgear filter-transformer">
-            <div class="portfolio-wrap">
-              <img src="images/moin768tokai.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 2</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="images/moin768tokai.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Web 2"><i class="bi bi-plus"></i></a>
-                  <a href="{{route('product_detail')}}" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-transformer">
-            <div class="portfolio-wrap">
-              <img src="images/moin736tokai.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 3</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="images/moin736tokai.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="App 3"><i class="bi bi-plus"></i></a>
-                  <a href="{{route('product_detail')}}" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card filter-switchgear">
-            <div class="portfolio-wrap">
-              <img src="images/moin690tokai.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Card 1</h4>
-                <p>Card</p>
-                <div class="portfolio-links">
-                  <a href="images/moin690tokai.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Card 1"><i class="bi bi-plus"></i></a>
-                  <a href="{{route('product_detail')}}" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="images/moin646tokai.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Card 3</h4>
-                <p>Card</p>
-                <div class="portfolio-links">
-                  <a href="images/moin666tokai.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Card 3"><i class="bi bi-plus"></i></a>
-                  <a href="{{route('product_detail')}}" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="images/moin682tokai.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 3</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="images/moin646tokai.jpg" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Web 3"><i class="bi bi-plus"></i></a>
-                  <a href="{{route('product_detail')}}" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+          @endforeach
 
         </div>
 

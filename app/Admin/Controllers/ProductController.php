@@ -3,25 +3,17 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
 class ProductController extends AdminController
 {
-    /**
-     * Title for current resource.
-     *
-     * @var string
-     */
     protected $title = 'Product';
 
-    /**
-     * Make a grid builder.
-     *
-     * @return Grid
-     */
     protected function grid()
     {
         $grid = new Grid(new Product());
@@ -29,24 +21,24 @@ class ProductController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('type', __('Type'));
         $grid->column('name', __('Name'));
-        $grid->column('description', __('Description'));
+        $grid->column('description', __('Description'))->display(function ($description){
+            return "". $description ."";
+        });
         $grid->column('quantity', __('Quantity'));
-        $grid->column('images', __('Images'));
+        $grid->column('images', __('Images'))->image("/uploads/");
         $grid->column('status', __('Status'));
-        $grid->column('created_by', __('Created by'));
-        $grid->column('updated_by', __('Updated by'));
+        $grid->column('user.name', __('Created by'));
+        $grid->column('user.name', __('Updated by'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
+
+        $grid->export(function ($export) {
+            $export->except(['images']);
+        });
 
         return $grid;
     }
 
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
     protected function detail($id)
     {
         $show = new Show(Product::findOrFail($id));
@@ -56,33 +48,41 @@ class ProductController extends AdminController
         $show->field('name', __('Name'));
         $show->field('description', __('Description'));
         $show->field('quantity', __('Quantity'));
-        $show->field('images', __('Images'));
+        $show->field('images', __('Images'))->image("/uploads/");
         $show->field('status', __('Status'));
-        $show->field('created_by', __('Created by'));
-        $show->field('updated_by', __('Updated by'));
+        $show->field('user.name', __('Created by'));
+        $show->field('user.name', __('Updated by'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
         return $show;
     }
 
-    /**
-     * Make a form builder.
-     *
-     * @return Form
-     */
     protected function form()
     {
         $form = new Form(new Product());
 
-        $form->text('type', __('Type'));
         $form->text('name', __('Name'));
-        $form->text('description', __('Description'));
+        $form->image('images', __('Images'));
+        $form->select('type', __('Category'))->options(function ($type){
+            $productCategory = ProductCategory::where('status', 1)->pluck('category_name', 'category_name');
+            return $productCategory;
+        });
+        $form->ckeditor('description', __('Description'));
         $form->number('quantity', __('Quantity'));
-        $form->textarea('images', __('Images'));
         $form->switch('status', __('Status'))->default(1);
-        $form->number('created_by', __('Created by'));
-        $form->number('updated_by', __('Updated by'));
+        $form->saving(function (Form $form) {
+            if($form->isCreating()){
+                $form->created_by = Admin::user()->id;
+            }else{
+                $form->updated_by = Admin::user()->id;
+            }
+        });
+
+        $form->submitted(function (Form $form) {
+            $form->images->crop(100, 100, 25, 25);
+
+        });
 
         return $form;
     }

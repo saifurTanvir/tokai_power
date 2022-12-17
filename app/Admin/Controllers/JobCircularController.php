@@ -4,52 +4,47 @@ namespace App\Admin\Controllers;
 
 use App\Models\JobCircular;
 use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
 class JobCircularController extends AdminController
 {
-    /**
-     * Title for current resource.
-     *
-     * @var string
-     */
     protected $title = 'JobCircular';
 
-    /**
-     * Make a grid builder.
-     *
-     * @return Grid
-     */
     protected function grid()
     {
         $grid = new Grid(new JobCircular());
 
         $grid->column('id', __('Id'));
         $grid->column('post_name', __('Post name'));
-        $grid->column('contaxt', __('Contaxt'));
-        $grid->column('responsibility', __('Responsibility'));
-        $grid->column('nature', __('Nature'));
-        $grid->column('requirment_education', __('Requirment education'));
-        $grid->column('requirment_experience', __('Requirment experience'));
+        $grid->column('contaxt', __('Contaxt'))->display(function ($contaxt){
+            return "". $contaxt ."";
+        });
+        $grid->column('responsibility', __('Responsibility'))->display(function ($responsibility){
+            return "". $responsibility ."";
+        });
+        $grid->column('nature', __('Nature'))->display(function ($nature){
+            return "". $nature ."";
+        });
+        $grid->column('requirment_education', __('Requirment education'))->display(function ($requirment_education){
+            return "". $requirment_education ."";
+        });
+        $grid->column('requirment_experience', __('Requirment experience'))->display(function ($requirment_experience){
+            return "". $requirment_experience ."";
+        });
         $grid->column('salary', __('Salary'));
         $grid->column('benefits', __('Benefits'));
         $grid->column('status', __('Status'));
-        $grid->column('created_by', __('Created by'));
-        $grid->column('updated_by', __('Updated by'));
+        $grid->column('user.name', __('Created by'));
+        $grid->column('user.name', __('Updated by'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
         return $grid;
     }
 
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
     protected function detail($id)
     {
         $show = new Show(JobCircular::findOrFail($id));
@@ -64,34 +59,34 @@ class JobCircularController extends AdminController
         $show->field('salary', __('Salary'));
         $show->field('benefits', __('Benefits'));
         $show->field('status', __('Status'));
-        $show->field('created_by', __('Created by'));
-        $show->field('updated_by', __('Updated by'));
+        $show->field('user.name', __('Created by'));
+        $show->field('user.name', __('Updated by'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
         return $show;
     }
 
-    /**
-     * Make a form builder.
-     *
-     * @return Form
-     */
     protected function form()
     {
         $form = new Form(new JobCircular());
 
         $form->text('post_name', __('Post name'));
-        $form->textarea('contaxt', __('Contaxt'));
-        $form->textarea('responsibility', __('Responsibility'));
-        $form->textarea('nature', __('Nature'));
-        $form->textarea('requirment_education', __('Requirment education'));
-        $form->textarea('requirment_experience', __('Requirment experience'));
+        $form->ckeditor('contaxt', __('Contaxt'));
+        $form->ckeditor('responsibility', __('Responsibility'));
+        $form->ckeditor('nature', __('Nature'));
+        $form->ckeditor('requirment_education', __('Requirment education'));
+        $form->ckeditor('requirment_experience', __('Requirment experience'));
         $form->number('salary', __('Salary'));
-        $form->textarea('benefits', __('Benefits'));
+        $form->ckeditor('benefits', __('Benefits'));
         $form->switch('status', __('Status'))->default(1);
-        $form->number('created_by', __('Created by'));
-        $form->number('updated_by', __('Updated by'));
+        $form->saving(function (Form $form) {
+            if($form->isCreating()){
+                $form->created_by = Admin::user()->id;
+            }else{
+                $form->updated_by = Admin::user()->id;
+            }
+        });
 
         return $form;
     }
