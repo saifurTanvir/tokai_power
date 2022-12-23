@@ -8,6 +8,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Image;
 
 class ServiceController extends AdminController
 {
@@ -24,14 +25,18 @@ class ServiceController extends AdminController
         });
         $grid->column('image', __('Image'))->image('/uploads/');
         $grid->column('status', __('Status'));
-        $grid->column('user.name', __('Created by'));
-        $grid->column('user.name', __('Updated by'));
+        $grid->column('createdUser.name', __('Created by'));
+        $grid->column('updatedUser.name', __('Updated by'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
         $grid->export(function ($export) {
             $export->except(['image']);
         });
+
+        $grid->disableExport();
+        $grid->disableFilter();
+        $grid->disableRowSelector();
 
         return $grid;
     }
@@ -47,8 +52,8 @@ class ServiceController extends AdminController
         });
         $show->field('image', __('Image'))->image("/uploads/");
         $show->field('status', __('Status'));
-        $show->field('user.name', __('Updated by'));
-        $show->field('user.name', __('Created by'));
+        $show->field('createdUser.name', __('Updated by'));
+        $show->field('updatedUser.name', __('Created by'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -65,10 +70,15 @@ class ServiceController extends AdminController
         $form->switch('status', __('Status'))->default(1);
         $form->saving(function (Form $form) {
             if($form->isCreating()){
-                $form->created_by = Admin::user()->id;
+                $form->model()->created_by = Admin::user()->id;
+
             }else{
-                $form->updated_by = Admin::user()->id;
+                $form->model()->updated_by = Admin::user()->id;
             }
+        });
+        $form->saved(function (Form $form) {
+            $image = public_path('uploads/'.$form->model()->image);
+            Image::make($image)->resize(500, 320)->save();
         });
 
         return $form;

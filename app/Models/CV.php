@@ -11,14 +11,26 @@ class CV extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $table = 'csr';
+    protected $table = 'cv';
 
-    public function user(){
-        return $this->belongsTo(AdminUser::class, 'id', 'id');
+    public function createdUser(){
+        return $this->belongsTo(AdminUser::class, 'created_by', 'id');
+    }
+
+    public function updatedUser(){
+        return $this->belongsTo(AdminUser::class, 'updated_by', 'id');
     }
 
     protected function getStatusAttribute($status){
         return $status ? "Active" : "Inactive";
+    }
+
+    protected function setStatusAttribute($status){
+        if($status == 1){
+            $this->attributes['status'] = 1;
+        }else{
+            $this->attributes['status'] = 0;
+        }
     }
 
     public function getCreatedAtAttribute($createdAt){

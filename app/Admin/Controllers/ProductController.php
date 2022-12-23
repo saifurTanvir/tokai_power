@@ -9,6 +9,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Image;
 
 class ProductController extends AdminController
 {
@@ -25,16 +26,20 @@ class ProductController extends AdminController
             return "". $description ."";
         });
         $grid->column('quantity', __('Quantity'));
-        $grid->column('images', __('Images'))->image("/uploads/");
+        $grid->column('image', __('Image'))->image("/uploads/");
+        $grid->column('image_1', __('Detail Image 1'))->image("/uploads/");
+        $grid->column('image_2', __('Detail Image 2'))->image("/uploads/");
+        $grid->column('image_3', __('Detail Image 3'))->image("/uploads/");
+        $grid->column('image_4', __('Detail Image 4'))->image("/uploads/");
         $grid->column('status', __('Status'));
-        $grid->column('user.name', __('Created by'));
-        $grid->column('user.name', __('Updated by'));
+        $grid->column('createdUser.name', __('Created by'));
+        $grid->column('updatedUser.name', __('Updated by'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
-        $grid->export(function ($export) {
-            $export->except(['images']);
-        });
+        $grid->disableExport();
+        $grid->disableFilter();
+        $grid->disableRowSelector();
 
         return $grid;
     }
@@ -48,10 +53,14 @@ class ProductController extends AdminController
         $show->field('name', __('Name'));
         $show->field('description', __('Description'));
         $show->field('quantity', __('Quantity'));
-        $show->field('images', __('Images'))->image("/uploads/");
+        $show->field('image', __('Image'))->image("/uploads/");
+        $show->field('image_1', __('Detail Image 1'))->image("/uploads/");
+        $show->field('image_2', __('Detail Image 2'))->image("/uploads/");
+        $show->field('image_3', __('Detail Image 3'))->image("/uploads/");
+        $show->field('image_4', __('Detail Image 4'))->image("/uploads/");
         $show->field('status', __('Status'));
-        $show->field('user.name', __('Created by'));
-        $show->field('user.name', __('Updated by'));
+        $show->field('createdUser.name', __('Created by'));
+        $show->field('updatedUser.name', __('Updated by'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -63,26 +72,47 @@ class ProductController extends AdminController
         $form = new Form(new Product());
 
         $form->text('name', __('Name'));
-        $form->image('images', __('Images'));
+        $form->image('image', __('Image'));
         $form->select('type', __('Category'))->options(function ($type){
             $productCategory = ProductCategory::where('status', 1)->pluck('category_name', 'category_name');
             return $productCategory;
         });
         $form->ckeditor('description', __('Description'));
+        $form->image('image_1', __('Detail Image 1'));
+        $form->image('image_2', __('Detail Image 2'));
+        $form->image('image_3', __('Detail Image 3'));
+        $form->image('image_4', __('Detail Image 4'));
         $form->number('quantity', __('Quantity'));
         $form->switch('status', __('Status'))->default(1);
         $form->saving(function (Form $form) {
+
+
             if($form->isCreating()){
-                $form->created_by = Admin::user()->id;
+                $form->model()->created_by = Admin::user()->id;
+
             }else{
-                $form->updated_by = Admin::user()->id;
+                $form->model()->updated_by = Admin::user()->id;
             }
         });
 
-        $form->submitted(function (Form $form) {
-            $form->images->crop(100, 100, 25, 25);
+        $form->saved(function (Form $form) {
+            $image = public_path('uploads/'.$form->model()->image);
+            Image::make($image)->resize(800, 600)->save();
 
+            $image_1 = public_path('uploads/'.$form->model()->image_1);
+            Image::make($image_1)->resize(800, 600)->save();
+
+            $image_2 = public_path('uploads/'.$form->model()->image_2);
+            Image::make($image_2)->resize(800, 600)->save();
+
+            $image_3 = public_path('uploads/'.$form->model()->image_3);
+            Image::make($image_3)->resize(800, 600)->save();
+
+            $image_4 = public_path('uploads/'.$form->model()->image_4);
+            Image::make($image_4)->resize(800, 600)->save();
         });
+
+
 
         return $form;
     }

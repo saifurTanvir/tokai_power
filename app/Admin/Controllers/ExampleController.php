@@ -26,8 +26,12 @@ class ExampleController extends AdminController
         $grid = new Grid(new ExampleModel);
 
         $grid->column('id', __('ID'))->sortable();
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('createdUser.name', __('Created by'));
+        $grid->column('updatedUser.name', __('Updated by'));
+
+        $grid->disableExport();
+        $grid->disableFilter();
+        $grid->disableRowSelector();
 
         return $grid;
     }
@@ -43,8 +47,8 @@ class ExampleController extends AdminController
         $show = new Show(ExampleModel::findOrFail($id));
 
         $show->field('id', __('ID'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('createdUser.name', __('Created at'));
+        $show->field('updatedUser.name', __('Updated at'));
 
         return $show;
     }

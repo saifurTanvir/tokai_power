@@ -51,6 +51,10 @@ CREATE TABLE `tokai_power`.`key_persions`(
   `image` varchar(255),
   `designation` varchar(500),
   `speech` text,
+  `facebook_url` varchar(255),
+  `twitter_url` varchar(255),
+  `linkedin_url` varchar(255),
+  `instagram_url` varchar(255),
   `status` TINYINT(5) DEFAULT 1,
   `created_by` INT(11),
   `updated_by` INT(11),
@@ -322,6 +326,48 @@ CREATE TABLE `about_us`(
 CREATE TABLE `product_category`(
   `id` INT(11) AUTO_INCREMENT,
   `category_name` varchar(255),
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+
+14. faq
+CREATE TABLE `tokai_power`.`faq`(
+  `id` INT(11) AUTO_INCREMENT,
+  `question` varchar(255),
+  `answer` text,
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+
+15. team
+CREATE TABLE `tokai_power`.`teams`(
+  `id` INT(11) AUTO_INCREMENT,
+  `name` varchar(255),
+  `image` varchar(255),
+  `designation` varchar(500),
+  `speech` text,
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);
+
+13. product_category:
+    category_name
+
+CREATE TABLE `capacity_type`(
+  `id` INT(11) AUTO_INCREMENT,
+  `name` varchar(255),
   `status` TINYINT(5) DEFAULT 1,
   `created_by` INT(11),
   `updated_by` INT(11),

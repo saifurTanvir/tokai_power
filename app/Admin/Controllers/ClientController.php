@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Client;
+use App\Models\CapacityType;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
@@ -24,12 +25,17 @@ class ClientController extends AdminController
         $grid->column('address', __('Address'));
         $grid->column('product', __('Product'));
         $grid->column('capacity', __('Capacity'));
+        $grid->column('type', __('Capacity Type'));
         $grid->column('quantity', __('Quantity'));
         $grid->column('status', __('Status'));
-        $grid->column('user.name', __('Created by'));
-        $grid->column('user.name', __('Updated by'));
+        $grid->column('createdUser.name', __('Created by'));
+        $grid->column('updatedUser.name', __('Updated by'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
+
+        $grid->disableExport();
+        $grid->disableFilter();
+        $grid->disableRowSelector();
 
         return $grid;
     }
@@ -44,11 +50,12 @@ class ClientController extends AdminController
         $show->field('logo', __('Logo'))->image("/uploads/");
         $show->field('address', __('Address'));
         $show->field('product', __('Product'));
+        $show->field('type', __('Capacity Type'));
         $show->field('capacity', __('Capacity'));
         $show->field('quantity', __('Quantity'));
         $show->field('status', __('Status'));
-        $show->field('user.name', __('Created by'));
-        $show->field('user.name', __('Updated by'));
+        $show->field('createdUser.name', __('Created by'));
+        $show->field('updatedUser.name', __('Updated by'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -64,14 +71,19 @@ class ClientController extends AdminController
         $form->image('logo', __('Logo'));
         $form->text('address', __('Address'));
         $form->text('product', __('Product'));
+        $form->select('type', __('Capacity Type'))->options(function ($type){
+            $capacityTypes = CapacityType::where('status', 1)->pluck('name', 'name');
+            return $capacityTypes;
+        });
         $form->text('capacity', __('Capacity'));
         $form->number('quantity', __('Quantity'));
         $form->switch('status', __('Status'))->default(1);
         $form->saving(function (Form $form) {
             if($form->isCreating()){
-                $form->created_by = Admin::user()->id;
+                $form->model()->created_by = Admin::user()->id;
+
             }else{
-                $form->updated_by = Admin::user()->id;
+                $form->model()->updated_by = Admin::user()->id;
             }
         });
 

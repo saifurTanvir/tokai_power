@@ -4,38 +4,49 @@
 
   <main id="main" class="mt-5">
 
+    <section class="breadcrumbs" style="color: white!important;">
+      <div class="container">
+
+        <ol>
+          <li><a style="color: white!important;" href="index.html">home</a></li>
+          <li>job_details</li>
+        </ol>
+        <h2>Job Details</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
     <!-- ======= Job Circular Section ======= -->
-    <section id="job_circular" class="services">
+    <section id="job_circular" class="services" style="background: rgb(255, 255, 193)">
       <div class="container" data-aos="fade-up">
-        <h2>Software Engineer</h2>
-        <p>BrainStation is a global leader in digital skills training and development, offering a 12-week bootcamp program in Data Science. BrainStation is currently hiring a Data Science professional to teach our program through online and in-person teaching. BrainStation Educators are given the unique opportunity to teach, research, and further develop their skills, while teaching in a dynamic, project-based setting.  </p>
+        <h2>{{$job->post_name}}</h2>
+        <p>{!! $job->contaxt !!}</p>
         <br>
-        <h2>Requirements</h2>
-        <ul>
-          <li>Teach our 12-week Data Science Diploma program</li>
-          <li>Help build a world class technical team passionate about designing and teaching</li>
-          <li>Teach our 12-week Data Science Diploma program</li>
-          <li>Co-create BrainStation’s curriculum that will positively impact the lives and careers of hundreds of individuals across our campuses</li>
-          <li>Help build a world class technical team passionate about designing and teaching</li>
-        </ul>
+        <h2>Responsibility</h2>
+        <p>
+          {!! $job->responsibility !!}
+        </p>
         <br>
-        <h2>About BrainStation</h2>
-        <ul>
-          <li>Teach our 12-week Data Science Diploma program</li>
-          <li>Help build a world class technical team passionate about designing and teaching</li>
-          <li>Teach our 12-week Data Science Diploma program</li>
-          <li>Co-create BrainStation’s curriculum that will positively impact the lives and careers of hundreds of individuals across our campuses</li>
-          <li>Help build a world class technical team passionate about designing and teaching</li>
-        </ul>
+        <h2>Nature</h2>
+        <p>
+          {!! $job->nature !!}
+        </p>
         <br>
-        <h2>Perks and Benefits</h2>
-        <ul>
-          <li>Teach our 12-week Data Science Diploma program</li>
-          <li>Help build a world class technical team passionate about designing and teaching</li>
-          <li>Teach our 12-week Data Science Diploma program</li>
-          <li>Co-create BrainStation’s curriculum that will positively impact the lives and careers of hundreds of individuals across our campuses</li>
-          <li>Help build a world class technical team passionate about designing and teaching</li>
-        </ul>
+        <h2>Requirment</h2>
+        <p>
+          {!! $job->requirment_education !!}
+          {!! $job->requirment_experience !!}
+        </p>
+        <br>
+        <h2>Benefits</h2>
+        <p>
+          {!! $job->benefits !!}
+        </p>
+        <br>
+        <h2>Salary</h2>
+        <p>
+          {!! $job->salary !!}
+        </p>
         <br>
 
       </div>

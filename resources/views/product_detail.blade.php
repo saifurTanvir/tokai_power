@@ -4,21 +4,20 @@
 
   <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section class="breadcrumbs">
+    <section class="breadcrumbs" style="color: white!important;">
       <div class="container">
 
         <ol>
-          <li><a href="index.html">Home</a></li>
-          <li>Portfolio Details</li>
+          <li><a style="color: white!important;" href="{{route('index')}}">home</a></li>
+          <li>product_details</li>
         </ol>
-        <h2>Portfolio Details</h2>
+        <h2>Product Details</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
     <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
+    <section id="portfolio-details" class="portfolio-details" style="background: rgb(255, 255, 193)">
       <div class="container">
 
         <div class="row gy-4">
@@ -26,19 +25,33 @@
           <div class="col-lg-8">
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
+                @if(empty($product->image_1))
+                  <div class="swiper-slide">
+                    <img src="{{asset('/uploads/'.$product->image)}}" class="img-fluid" alt="">
+                  </div>
+                @else
+                  <div class="swiper-slide">
+                    <img src="{{asset('/uploads/'.$product->image_1)}}" class="img-fluid" alt="">
+                  </div>
+                @endif
 
-                <div class="swiper-slide">
-                  <img src="images/moin644tokai.jpg" alt="">
-                </div>
+                @if(!empty($product->image_2))
+                    <div class="swiper-slide">
+                      <img src="{{asset('/uploads/'.$product->image_2)}}" class="img-fluid" alt="">
+                    </div>
+                @endif
 
-                <div class="swiper-slide">
-                  <img src="images/moin903tokai.jpg" alt="">
-                </div>
+                @if(!empty($product->image_3))
+                  <div class="swiper-slide">
+                    <img src="{{asset('/uploads/'.$product->image_3)}}" class="img-fluid" alt="">
+                  </div>
+                @endif
 
-                <div class="swiper-slide">
-                  <img src="images/moin893tokai.jpg" alt="">
-                </div>
-
+                @if(!empty($product->image_4))
+                  <div class="swiper-slide">
+                    <img src="{{asset('/uploads/'.$product->image_4)}}" class="img-fluid" alt="">
+                  </div>
+                @endif
               </div>
               <div class="swiper-pagination"></div>
             </div>
@@ -48,16 +61,16 @@
             <div class="portfolio-info">
               <h3>Project information</h3>
               <ul>
-                <li><strong>Category</strong>: Web design</li>
-                <li><strong>Client</strong>: ASU Company</li>
-                <li><strong>Project date</strong>: 01 March, 2020</li>
-                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                <li><strong>Title</strong>: {{$product->name}}</li>
+                <li><strong>Category</strong>: {{$product->type}}</li>
+                <li><strong>Available Product</strong>: {{$product->quantity}}</li>
+                <li><strong>Upload date</strong>: {{$product->created_at}}</li>
               </ul>
             </div>
             <div class="portfolio-description">
-              <h2>This is an example of portfolio detail</h2>
+              <h2>Product Details</h2>
               <p>
-                Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
+                {!! $product->description !!}
               </p>
             </div>
           </div>

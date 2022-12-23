@@ -15,23 +15,11 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('product_detail/{product}', [HomeController::class, 'product_detail'])->name('product_detail');
+Route::get('service/detail/{service}', [HomeController::class, 'service_detail'])->name('service_detail');
+Route::get('about_us', [HomeController::class, 'about_us'])->name('about_us');
+Route::get('client', [HomeController::class, 'client'])->name('client');
+Route::get('career', [HomeController::class, 'career'])->name('career');
+Route::get('job_detail/{job}', [HomeController::class, 'job_detail'])->name('job_detail');
+Route::get('portfolio', [HomeController::class, 'portfolio'])->name('portfolio');
 
-Route::get('about_us', function () {
-    return view('about_us');
-})->name('about_us');
-
-Route::get('career', function () {
-    return view('career');
-})->name('career');
-
-Route::get('product_detail', function(){
-   return view('product_detail');
-})->name('product_detail');
-
-Route::get('job_post', function(){
-    return view('job_post');
-})->name('job_post');
-
-Route::get('client', function(){
-    return view('clients');
-})->name('client');

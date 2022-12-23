@@ -24,11 +24,19 @@ class KeyPersonController extends AdminController
         $grid->column('speech', __('Speech'))->display(function ($speech){
             return "". $speech ."";
         });
+        $grid->column('facebook_url', __('Facebook URL'));
+        $grid->column('instagram_url', __('Instagram URL'));
+        $grid->column('twitter_url', __('Twitter URL'));
+        $grid->column('linkedin_url', __('Linked In URL'));
         $grid->column('status', __('Status'));
-        $grid->column('user.name', __('Created by'));
-        $grid->column('user.name', __('Updated by'));
+        $grid->column('createdUser.name', __('Created by'));
+        $grid->column('updatedUser.name', __('Updated by'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
+
+        $grid->disableExport();
+        $grid->disableFilter();
+        $grid->disableRowSelector();
 
         return $grid;
     }
@@ -42,9 +50,13 @@ class KeyPersonController extends AdminController
         $show->field('image', __('image'))->image("/uploads/");
         $show->field('designation', __('Designation'));
         $show->field('speech', __('Speech'));
+        $show->field('facebook_url', __('Facebook URL'));
+        $show->field('instagram_url', __('Instagram URL'));
+        $show->field('twitter_url', __('Twitter URL'));
+        $show->field('linkedin_url', __('Linked In URL'));
         $show->field('status', __('Status'));
-        $show->field('user.name', __('Created by'));
-        $show->field('user.name', __('Updated by'));
+        $show->field('createdUser.name', __('Created by'));
+        $show->field('updatedUser.name', __('Updated by'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -59,12 +71,17 @@ class KeyPersonController extends AdminController
         $form->image('image', __('image'));
         $form->text('designation', __('Designation'));
         $form->ckeditor('speech', __('Speech'));
+        $form->url('facebook_url', __('Facebook URL'));
+        $form->url('instagram_url', __('Instagram URL'));
+        $form->url('twitter_url', __('Twitter URL'));
+        $form->url('linkedin_url', __('Linked In URL'));
         $form->switch('status', __('Status'))->default(1);
         $form->saving(function (Form $form) {
             if($form->isCreating()){
-                $form->created_by = Admin::user()->id;
+                $form->model()->created_by = Admin::user()->id;
+
             }else{
-                $form->updated_by = Admin::user()->id;
+                $form->model()->updated_by = Admin::user()->id;
             }
         });
 

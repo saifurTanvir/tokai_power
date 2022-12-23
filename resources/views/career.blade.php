@@ -5,12 +5,12 @@
   <main id="main" class="mt-5">
 
     <!-- ======= Breadcrumbs ======= -->
-    <section class="breadcrumbs">
+    <section class="breadcrumbs" style="color: white!important;">
       <div class="container">
 
         <ol>
-          <li><a href="{{route('index')}}">Home</a></li>
-          <li>Career</li>
+          <li><a style="color: white!important;" href="{{route('index')}}">home</a></li>
+          <li>career</li>
         </ol>
         <h2>Career</h2>
 
@@ -18,7 +18,7 @@
     </section><!-- End Breadcrumbs -->
 
     <!-- ======= Job Circular Section ======= -->
-    <section id="job_circular" class="services">
+    <section id="job_circular" class="services" style="background: #e1eff0">
 
       <div class="container" data-aos="fade-up">
 
@@ -30,57 +30,14 @@
         <div class="row gy-4">
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-box blue">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Nesciunt Mete</h3>
-              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
-              <a href="{{route('job_post')}}" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-box orange">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Eosle Commodi</h3>
-              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
-              <a href="{{route('job_post')}}" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-box green">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Ledo Markt</h3>
-              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-              <a href="{{route('job_post')}}" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="service-box red">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Asperiores Commodi</h3>
-              <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-              <a href="{{route('job_post')}}" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="service-box purple">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Velit Doloremque.</h3>
-              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-              <a href="{{route('job_post')}}" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
-            <div class="service-box pink">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Dolori Architecto</h3>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="{{route('job_post')}}" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
+            @foreach($jobPosts AS $job)
+              <div class="service-box blue">
+                <i class="ri-discuss-line icon"></i>
+                <h3>{{$job->post_name}}</h3>
+                <p>{!! $job->contaxt !!}</p>
+                <a href="{{route('job_detail', [$job->id])}}" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+              </div>
+            @endforeach
           </div>
 
         </div>
@@ -90,7 +47,7 @@
     </section><!-- End Services Section -->
 
     <!-- ======= Contact Section ======= -->
-    <section id="cv_drop" class="contact">
+    <section id="cv_drop" class="contact" style="background: rgb(255, 255, 193)">
 
       <div class="container" data-aos="fade-up">
 
@@ -137,9 +94,9 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form">
+            <form action="" method="post" class="php-email-form">
+              @csrf
               <div class="row gy-4">
-
                 <div class="col-md-6">
                   <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                 </div>
@@ -149,7 +106,11 @@
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                  <input type="text" class="form-control" name="phone" placeholder="phone" required>
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="subject" required>
                 </div>
 
                 <div class="col-md-12">
