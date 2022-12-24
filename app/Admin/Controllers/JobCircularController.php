@@ -81,7 +81,7 @@ class JobCircularController extends AdminController
         $form->ckeditor('nature', __('Nature'));
         $form->ckeditor('requirment_education', __('Requirment education'));
         $form->ckeditor('requirment_experience', __('Requirment experience'));
-        $form->number('salary', __('Salary'));
+        $form->text('salary', __('Salary'));
         $form->ckeditor('benefits', __('Benefits'));
         $form->switch('status', __('Status'))->default(1);
         $form->saving(function (Form $form) {

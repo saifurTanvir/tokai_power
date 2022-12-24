@@ -160,14 +160,14 @@
 
       <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-        @foreach($csrs AS $csr)
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web filter-bbt">
+        @foreach($acheivements AS $acheivement)
+          <div class="col-lg-3 col-md-6 portfolio-item filter-web filter-bbt">
             <div class="portfolio-wrap">
-              <img src="{{asset('/uploads/'.$csr->image)}}" class="img-fluid" alt="">
+              <img src="{{asset('/uploads/'.$acheivement->image)}}" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>{{$csr->title}}</h4>
+                <h4>{{$acheivement->title}}</h4>
                 <div class="portfolio-links">
-                  <a href="{{asset('images/moin903tokai.jpg')}}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$csr->title}}"><i class="bi bi-plus"></i></a>
+                  <a href="{{asset('images/moin903tokai.jpg')}}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$acheivement->certificate}}"><i class="bi bi-plus"></i></a>
                 </div>
               </div>
             </div>
@@ -190,12 +190,12 @@
 
       <div class="row">
 
-        @foreach($acheivements AS $acheivement)
+        @foreach($csrs AS $csr)
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
           <div class="box">
-            <img src="{{asset('/uploads/'.$acheivement->image)}}" class="img-fluid" alt="">
-            <h3>{{$acheivement->certification_name}}</h3>
-            <p>{!! $acheivement->certification_detail !!}</p>
+            <img src="{{asset('/uploads/'.$csr->image)}}" class="img-fluid" alt="">
+            <h3>{{ $csr->title }}</h3>
+            <p>{!! $csr->description !!}</p>
           </div>
         </div>
         @endforeach

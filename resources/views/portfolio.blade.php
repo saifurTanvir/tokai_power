@@ -2,22 +2,10 @@
 
 @section('content')
 
-  <main id="main" class="mt-5">
+  <main id="main" class="mt-5 pt-lg-5 pt-xl-5">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section class="breadcrumbs" style="color: white!important;">
-      <div class="container">
-
-        <ol>
-          <li><a style="color: white!important;" href="{{route('index')}}">home</a></li>
-          <li>portfolio</li>
-        </ol>
-        <h2>Portfolio</h2>
-
-      </div>
-    </section><!-- End Breadcrumbs -->
-
-    <section id="key_features" class="team" style="background: #e1eff0">
+    <!-- ======= Products Section ======= -->
+    <section id="portfolio" class="portfolio" style="background: #e1eff0">
 
       <div class="container" data-aos="fade-up">
 
@@ -25,18 +13,16 @@
           <h2>Portfolio</h2>
         </header>
 
-        <div class="row gy-4">
+        <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
           @foreach($portfolios AS $portfolio)
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-              <div class="member">
-                <div class="member-img">
-                  <img src="{{asset('/uploads/'.$portfolio->image)}}" class="img-fluid" alt="">
-                </div>
-                <div class="member-info">
-                  <h4>{{$portfolio->name}}</h4>
-                  <span>{{$portfolio->designation}}</span>
-                  <p>{!! $portfolio->speech !!}</p>
+            <div class="col-lg-3 col-md-4 portfolio-item">
+              <div class="portfolio-wrap">
+                <img src="{{asset('/uploads/'.$portfolio->image)}}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <div class="portfolio-links">
+                    <a href="{{asset('/uploads/'.$portfolio->image)}}" data-gallery="portfolioGallery" class="portfokio-lightbox"><i class="bi bi-plus"></i></a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -46,7 +32,7 @@
 
       </div>
 
-    </section><!-- End Team Section -->
+    </section><!-- End Products Section -->
 
 
   </main><!-- End #main -->

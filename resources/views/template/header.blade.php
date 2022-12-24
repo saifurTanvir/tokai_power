@@ -51,7 +51,8 @@
       <ul>
         @if(strpos(url()->current(), "job_post") || strpos(url()->current(), "about_us") ||
               strpos(url()->current(), "career") || strpos(url()->current(), "product_detail")
-              || strpos(url()->current(), "client") || strpos(url()->current(), "portfolio"))
+              || strpos(url()->current(), "client") || strpos(url()->current(), "portfolio")
+               || strpos(url()->current(), "job_detail"))
           <li><a class="nav-link scrollto active" href="{{route('index')}}">Home</a></li>
         @else
           <li><a class="nav-link scrollto" href="#hero">Home</a></li>
@@ -81,7 +82,8 @@
 
         @if(strpos(url()->current(), "job_post") || strpos(url()->current(), "about_us") ||
           strpos(url()->current(), "career") || strpos(url()->current(), "product_detail")
-          || strpos(url()->current(), "client") || strpos(url()->current(), "portfolio"))
+          || strpos(url()->current(), "client") || strpos(url()->current(), "portfolio")
+           || strpos(url()->current(), "job_detail"))
           <li><a class="nav-link scrollto" href="{{route('index').'#portfolio'}}">Products</a></li>
           <li><a class="nav-link scrollto" href="{{route('index').'#values'}}">Services</a></li>
           <li><a class="nav-link scrollto" href="{{route('portfolio')}}">Portfolio</a></li>
@@ -113,13 +115,7 @@
           </li>
         @endif
 
-        @if(strpos(url()->current(), "job_post") || strpos(url()->current(), "about_us") ||
-            strpos(url()->current(), "career") || strpos(url()->current(), "product_detail")
-            || strpos(url()->current(), "client") || strpos(url()->current(), "portfolio"))
-          <li><a class="nav-link scrollto" href="{{route('index').'#contact'}}">Contact Us</a></li>
-        @else
-          <li><a class="nav-link scrollto" href="#contact">Contact Us</a></li>
-        @endif
+        <li><a class="nav-link scrollto" href="/admin">Admin</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
@@ -141,7 +137,7 @@
               <img src="{{asset("assets/img/logo.png")}}" alt="">
               <span>Tokai Power</span>
             </a>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <p>Founded in 1997, Tokai Power Products Ltd. (TPPL) has been playing a part in the steady growth of Bangladesh economy by contributing in various aspects of power generation, transmission and distribution.</p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -153,33 +149,32 @@
           <div class="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('index')}}">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('about_us')}}">About us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('index').'#values'}}">Services</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('index').'#portfolio'}}">Products</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('portfolio')}}">Portfolio</a></li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>Other Links</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('index').'#clients'}}">Clients</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('career')}}">Career</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('about_us').'#blog'}}">About CEO</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('about_us').'#key_features'}}">Key Persons</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('about_us').'#mission_and_vision'}}">Mission & VIsion</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <div class="col-lg-2 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+              152/1/H, Green Road (8th Floor)<br>
+              Panthapath, Dhaka-1205 <br>
+              <strong>Phone:</strong>880-2-8141875<br>
+              <strong>Email:</strong> tokai.power@yahoo.com<br>
             </p>
 
           </div>

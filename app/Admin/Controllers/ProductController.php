@@ -96,20 +96,30 @@ class ProductController extends AdminController
         });
 
         $form->saved(function (Form $form) {
-            $image = public_path('uploads/'.$form->model()->image);
-            Image::make($image)->resize(800, 600)->save();
+            if(!empty($form->model()->image)){
+                $image = public_path('uploads/'.$form->model()->image);
+                if(!empty($image)) Image::make($image)->resize(800, 600)->save();
+            }
 
-            $image_1 = public_path('uploads/'.$form->model()->image_1);
-            Image::make($image_1)->resize(800, 600)->save();
+            if(!empty($form->model()->image_1)){
+                $image_1 = public_path('uploads/'.$form->model()->image_1);
+                if(!empty($image_1)) Image::make($image_1)->resize(800, 600)->save();
+            }
 
-            $image_2 = public_path('uploads/'.$form->model()->image_2);
-            Image::make($image_2)->resize(800, 600)->save();
+            if(!empty($form->model()->image_2)){
+                $image_2 = public_path('uploads/'.$form->model()->image_2);
+                if(!empty($image_2)) Image::make($image_2)->resize(800, 600)->save();
+            }
 
-            $image_3 = public_path('uploads/'.$form->model()->image_3);
-            Image::make($image_3)->resize(800, 600)->save();
+            if(!empty($form->model()->image_3)){
+                $image_3 = public_path('uploads/'.$form->model()->image_3);
+                if(!empty($image_3)) Image::make($image_3)->resize(800, 600)->save();
+            }
 
-            $image_4 = public_path('uploads/'.$form->model()->image_4);
-            Image::make($image_4)->resize(800, 600)->save();
+            if(!empty($form->model()->image_4)){
+                $image_4 = public_path('uploads/'.$form->model()->image_4);
+                if(!empty($image_4)) Image::make($image_4)->resize(800, 600)->save();
+            }
         });
 
 

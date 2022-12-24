@@ -8,6 +8,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Image;
 
 class TeamController extends AdminController
 {
@@ -82,6 +83,13 @@ class TeamController extends AdminController
 
             }else{
                 $form->model()->updated_by = Admin::user()->id;
+            }
+        });
+
+        $form->saved(function (Form $form) {
+            if(!empty($form->model()->image)){
+                $image = public_path('uploads/'.$form->model()->image);
+                if(!empty($image)) Image::make($image)->resize(800, 800)->save();
             }
         });
 

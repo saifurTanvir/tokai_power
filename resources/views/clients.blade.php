@@ -26,7 +26,7 @@
           <ul class="nav nav-pills mb-3">
               @foreach($capacityTypes AS $serial => $capacity)
                 <li>
-                  <a class="nav-link @if($serial == 0) active @endif" data-bs-toggle="pill" href="#{{str_replace(' ', '_', $capacity->type)}}">{{$capacity->type}}</a>
+                  <a class="nav-link @if($serial == 0) active @endif" data-bs-toggle="pill" href="#{{str_replace(' ', '_', preg_replace("/[0-9]/", "", $capacity->type))}}">{{$capacity->type}}</a>
                 </li>
               @endforeach
           </ul><!-- End Tabs -->
@@ -34,7 +34,7 @@
           <!-- Tab Content -->
           <div class="tab-content">
               @foreach($capacityTypes AS $serial => $capacity)
-                <div class="tab-pane fade show @if($serial == 0) active @endif" id="{{str_replace(' ', '_', $capacity->type)}}">
+                <div class="tab-pane fade show @if($serial == 0) active @endif" id="{{str_replace(' ', '_', preg_replace("/[0-9]/", "", $capacity->type))}}">
                   <table class="table table-dark table-striped">
                     <thead>
                     <tr>

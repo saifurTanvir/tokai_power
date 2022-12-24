@@ -220,7 +220,7 @@
               <div class="box">
                 <img src="{{asset('/uploads/'.$service->image)}}" class="img-fluid" alt="">
                 <h3>{{$service->name}}</h3>
-                <p>{!! Str::limit($service->description, 80)!!}</p>
+                <p>{!! Str::limit($service->description, 80) !!}</p>
               </div>
             </div>
           @endforeach
@@ -288,7 +288,7 @@
 
           <div class="col-lg-6">
             @foreach($faqs AS $key => $faq)
-              @if($key % 2 == 0)
+              @if($key % 2 == 1)
                 <div class="accordion accordion-flush" id="faqlist2">
 
                   <div class="accordion-item">
@@ -339,9 +339,8 @@
                   </div>
                 </div>
                 <div class="member-info">
-                  <h4>Walter White</h4>
-                  <span>Chief Executive Officer</span>
-                  <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
+                  <h4>{{$team->name}}</h4>
+                  <div>{{$team->designation}}</div>
                 </div>
               </div>
             </div>
@@ -369,7 +368,7 @@
 
             <!--Google map-->
             <div id="map-container-google-4" class="z-depth-1-half map-container-4" style="height: 500px">
-              <iframe src="https://maps.google.com/maps?q=Notun+Bazar+Dhaka+1212&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+              <iframe src="https://maps.google.com/maps?q=Panthapath+Dhaka+1205&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
                       style="border:0" allowfullscreen></iframe>
             </div>
 
@@ -398,28 +397,28 @@
                 <div class="info-box">
                   <i class="bi bi-geo-alt"></i>
                   <h3>Address</h3>
-                  <p>A108 Adam Street,<br>New York, NY 535022</p>
+                  <p>152/1/H, Green Road (8th Floor),<br>Panthapath, Dhaka-1205</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bi bi-telephone"></i>
                   <h3>Call Us</h3>
-                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                  <p>880-2-8141875<br>9146149</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bi bi-envelope"></i>
                   <h3>Email Us</h3>
-                  <p>info@example.com<br>contact@example.com</p>
+                  <p>tokai_powers@yahoo.com<br>tokai@citech.net</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bi bi-clock"></i>
                   <h3>Open Hours</h3>
-                  <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                  <p>Sunday - Thursday<br>9:00AM - 05:00PM</p>
                 </div>
               </div>
             </div>

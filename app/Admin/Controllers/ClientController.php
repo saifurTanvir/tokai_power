@@ -9,6 +9,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Image;
 
 class ClientController extends AdminController
 {
@@ -84,6 +85,13 @@ class ClientController extends AdminController
 
             }else{
                 $form->model()->updated_by = Admin::user()->id;
+            }
+        });
+
+        $form->saved(function (Form $form) {
+            if(!empty($form->model()->logo)){
+                $image = public_path('uploads/'.$form->model()->logo);
+                if(!empty($image)) Image::make($image)->resize(800, 600)->save();
             }
         });
 
