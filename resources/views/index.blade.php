@@ -5,6 +5,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero d-flex align-items-center carosel_styles">
 
+
     <div class="hero-img" data-aos="zoom-out" data-aos-delay="100">
       <div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -46,7 +47,7 @@
 
         <header class="section-header">
           <h2>About Us</h2>
-          <p>THE RELIABLE GROUP OF COMPANY IN BANGLADESH</p>
+          <p>THE RELIABLE COMPANY IN BANGLADESH</p>
         </header>
 
         <div class="row">
@@ -61,42 +62,42 @@
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="200">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3>POWER STATION</h3>
+                  <h3>Substation</h3>
                 </div>
               </div>
 
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="300">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3>ELECTRIC LIFT</h3>
+                  <h3>Switchgear</h3>
                 </div>
               </div>
 
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="400">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3>INDUSTRIAL, COMMERCIAL</h3>
+                  <h3>Transformer</h3>
                 </div>
               </div>
 
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="500">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3>SUB-STATION WORK</h3>
+                  <h3>Generator</h3>
                 </div>
               </div>
 
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="600">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3>REWIRING & UPGRADING</h3>
+                  <h3>Busbar Trunking</h3>
                 </div>
               </div>
 
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="700">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3>KWH/ ENERGY METER</h3>
+                  <h3>Panel/ DB/MCC</h3>
                 </div>
               </div>
 
@@ -220,7 +221,6 @@
               <div class="box">
                 <img src="{{asset('/uploads/'.$service->image)}}" class="img-fluid" alt="">
                 <h3>{{$service->name}}</h3>
-                <p>{!! Str::limit($service->description, 80) !!}</p>
               </div>
             </div>
           @endforeach
@@ -244,7 +244,9 @@
         <div class="clients-slider swiper">
           <div class="swiper-wrapper align-items-center">
             @foreach($clients AS $client)
-              <div class="swiper-slide"><img src="{{asset('/uploads/'.$client->logo)}}" class="img-fluid" alt=""></div>
+              @if(!empty($client->logo))
+                <div class="swiper-slide"><img src="{{asset('/uploads/'.$client->logo)}}" class="img-fluid" alt=""></div>
+              @endif
             @endforeach
 
           </div>
@@ -254,68 +256,8 @@
 
     </section><!-- End Clients Section -->
 
-    <!-- ======= F.A.Q Section ======= -->
-    <section id="faq" class="faq" style="background: rgb(255, 255, 193)">
-
-      <div class="container" data-aos="fade-up">
-
-        <header class="section-header">
-          <h2>F.A.Q</h2>
-          <p>Frequently Asked Questions</p>
-        </header>
-
-        <div class="row">
-          <div class="col-lg-6">
-            @foreach($faqs AS $key => $faq)
-              @if($key % 2 == 0)
-              <div class="accordion accordion-flush" id="faqlist1">
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed pl-lg-4 pt-lg-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
-                      {{$faq->question}}
-                    </button>
-                  </h2>
-                  <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
-                    <div class="accordion-body ml-lg-4">
-                      {!! $faq->answer !!}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              @endif
-            @endforeach
-          </div>
-
-          <div class="col-lg-6">
-            @foreach($faqs AS $key => $faq)
-              @if($key % 2 == 1)
-                <div class="accordion accordion-flush" id="faqlist2">
-
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button collapsed pl-lg-4 pt-lg-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq2-content-1">
-                        {{$faq->question}}
-                      </button>
-                    </h2>
-                    <div id="faq2-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
-                      <div class="accordion-body ml-lg-4">
-                        {!! $faq->answer !!}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              @endif
-            @endforeach
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- End F.A.Q Section -->
-
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team" style="background: #e1eff0">
+    <section id="team" class="team" style="background: rgb(255, 255, 193)">
 
       <div class="container" data-aos="fade-up">
 
@@ -351,6 +293,66 @@
       </div>
 
     </section><!-- End Team Section -->
+
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq" style="background: #e1eff0">
+
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h2>F.A.Q</h2>
+          <p>Frequently Asked Questions</p>
+        </header>
+
+        <div class="row">
+          <div class="col-lg-6">
+            @foreach($faqs AS $key => $faq)
+              @if($key % 2 == 0)
+                <div class="accordion accordion-flush" id="faqlist1">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed pl-lg-4 pt-lg-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                        {{$faq->question}}
+                      </button>
+                    </h2>
+                    <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                      <div class="accordion-body ml-lg-4">
+                        {!! $faq->answer !!}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              @endif
+            @endforeach
+          </div>
+
+          <div class="col-lg-6">
+            @foreach($faqs AS $key => $faq)
+              @if($key % 2 == 1)
+                <div class="accordion accordion-flush" id="faqlist2">
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed pl-lg-4 pt-lg-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq2-content-1">
+                        {{$faq->question}}
+                      </button>
+                    </h2>
+                    <div id="faq2-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                      <div class="accordion-body ml-lg-4">
+                        {!! $faq->answer !!}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              @endif
+            @endforeach
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- End F.A.Q Section -->
 
     <!-- ======= Sales Section ======= -->
     <section id="sales_centers" class="sales_centers" style="background: rgb(255, 255, 193)">

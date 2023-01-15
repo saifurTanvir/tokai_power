@@ -17,14 +17,14 @@
     </section><!-- End Breadcrumbs -->
 
     <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details" style="background: rgb(255, 255, 193)">
+    <section id="portfolio-details" class="portfolio-details" style="background: rgb(255, 255, 193);">
       <div class="container">
 
         <div class="row gy-4">
 
           <div class="col-lg-8">
             <div class="portfolio-details-slider swiper">
-              <div class="swiper-wrapper align-items-center">
+              <div class="swiper-wrapper align-items-center" style=" height: 70%;">
                 @if(empty($product->image_1))
                   <div class="swiper-slide">
                     <img src="{{asset('/uploads/'.$product->image)}}" class="img-fluid" alt="">

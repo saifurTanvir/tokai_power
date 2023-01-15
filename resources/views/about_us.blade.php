@@ -25,7 +25,7 @@
         <!-- Feature Tabs -->
         <div class="row feture-tabs" data-aos="fade-up">
           <div class="col-lg-9">
-            <h3>MEET OUR HONORABLE CTO Mr. {{$cto->name}}</h3>
+            <h3>MEET OUR HONORABLE CHAIRMAN Mr. {{$cto->name}}</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -94,7 +94,6 @@
                 <div class="member-info">
                   <h4>{{$keyPerson->name}}</h4>
                   <span>{{$keyPerson->designation}}</span>
-                  <p>{!! $keyPerson->speech !!}</p>
                 </div>
               </div>
             </div>
@@ -167,7 +166,7 @@
               <div class="portfolio-info">
                 <h4>{{$acheivement->title}}</h4>
                 <div class="portfolio-links">
-                  <a href="{{asset('images/moin903tokai.jpg')}}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$acheivement->certificate}}"><i class="bi bi-plus"></i></a>
+                  <a href="{{asset('/uploads/'.$acheivement->image)}}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$acheivement->certificate}}"><i class="bi bi-plus"></i></a>
                 </div>
               </div>
             </div>

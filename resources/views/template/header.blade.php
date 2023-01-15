@@ -29,6 +29,8 @@
 
   <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     .carousel-inner img {
       width: 100%;
@@ -71,7 +73,7 @@
         @else
           <li class="dropdown"><a href="{{route('about_us')}}"><span>About Us</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="{{route('about_us').'#blog'}}">About Founder</a></li>
+              <li><a href="{{route('about_us').'#blog'}}">About Chairman</a></li>
               <li><a href="{{route('about_us').'#key_features'}}">Key Persons</a></li>
               <li><a href="{{route('about_us').'#mission_and_vision'}}">Mission & Vision</a></li>
               <li><a href="{{route('about_us').'#achievements'}}">Achievements</a></li>
@@ -115,6 +117,7 @@
           </li>
         @endif
 
+        <li><a style="font-size: 50px" class="nav-link scrollto" href="https://www.facebook.com/tokaipower"><i class="fa-brands fa-square-facebook fa-10x"></i></a></li>
         <li><a class="nav-link scrollto" href="/admin">Admin</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
@@ -139,10 +142,10 @@
             </a>
             <p>Founded in 1997, Tokai Power Products Ltd. (TPPL) has been playing a part in the steady growth of Bangladesh economy by contributing in various aspects of power generation, transmission and distribution.</p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <a href="https://www.facebook.com/tokaipower" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="https://www.facebook.com/tokaipower" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.facebook.com/tokaipower" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.facebook.com/tokaipower" class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
 

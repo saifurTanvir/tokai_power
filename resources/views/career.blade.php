@@ -29,16 +29,16 @@
 
         <div class="row gy-4">
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            @foreach($jobPosts AS $job)
-              <div class="service-box blue">
-                <i class="ri-discuss-line icon"></i>
-                <h3>{{$job->post_name}}</h3>
-                <p>{!! Str::limit($job->contaxt, 150) !!}</p>
-                <a href="{{route('job_detail', [$job->id])}}" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-              </div>
-            @endforeach
-          </div>
+          @foreach($jobPosts AS $job)
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-box blue">
+                  <i class="ri-discuss-line icon"></i>
+                  <h3>{{$job->post_name}}</h3>
+                  <p>{!! Str::limit($job->contaxt, 150) !!}</p>
+                  <a href="{{route('job_detail', [$job->id])}}" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+          @endforeach
 
         </div>
 

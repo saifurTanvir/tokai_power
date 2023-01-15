@@ -19,7 +19,7 @@
 
       <!-- Feature Tabs -->
       <div class="row feture-tabs" data-aos="fade-up">
-        <div class="col-lg-12">
+        <div class="col-lg-10">
           <h2>Our Client List</h2>
 
           <!-- Tabs -->
@@ -38,23 +38,21 @@
                   <table class="table table-dark table-striped">
                     <thead>
                     <tr>
-                      <th>Serial No</th>
-                      <th>Parent Company</th>
+                      <th>Serial</th>
                       <th>Company Name</th>
                       <th>Address</th>
                       <th>Capacity</th>
                     </tr>
                     </thead>
                     <tbody>
-                  @foreach($capacity->capacityWiseClient AS $key => $client)
-                      <tr>
-                        <td>{{$key+1}}</td>
-                        <td>{{$client->parent_company}}</td>
-                        <td>{{$client->company}}</td>
-                        <td>{{$client->address}}</td>
-                        <td>{{$client->capacity}}</td>
-                      </tr>
-                  @endforeach
+                    @foreach($capacity->capacityWiseClient AS $key => $client)
+                        <tr>
+                          <td>{{$key+1}}</td>
+                          <td>{{$client->company}}</td>
+                          <td>{{$client->address}}</td>
+                          <td>{{$client->capacity}}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                   </table>
                 </div><!-- End Tab 1 Content -->

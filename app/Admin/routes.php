@@ -29,4 +29,8 @@ Route::group([
     $router->resource('product_category', ProductCategoryController::class);
     $router->resource('capacity_type', CapacityTypeController::class);
     $router->resource('portfolio', PortfolioController::class);
+
+    $router->get('client_list_by_xls', 'ClientController@clientListByXls');
+    $router->post('client_list_by_xls', 'ClientController@clientListByXlsStore')->name('client_list_by_xls');
+
 });

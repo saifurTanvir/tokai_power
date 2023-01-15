@@ -2,14 +2,17 @@
 
 namespace App\Admin\Controllers;
 
+use App\Imports\ClientImport;
 use App\Models\Client;
 use App\Models\CapacityType;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use Image;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClientController extends AdminController
 {
@@ -20,11 +23,9 @@ class ClientController extends AdminController
         $grid = new Grid(new Client());
 
         $grid->column('id', __('Id'));
-        $grid->column('parent_company', __('Parent company'));
         $grid->column('company', __('Company'));
         $grid->column('logo', __('Logo'))->image("/uploads/");
         $grid->column('address', __('Address'));
-        $grid->column('product', __('Product'));
         $grid->column('capacity', __('Capacity'));
         $grid->column('type', __('Capacity Type'));
         $grid->column('quantity', __('Quantity'));
@@ -46,11 +47,9 @@ class ClientController extends AdminController
         $show = new Show(Client::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('parent_company', __('Parent company'));
         $show->field('company', __('Company'));
         $show->field('logo', __('Logo'))->image("/uploads/");
         $show->field('address', __('Address'));
-        $show->field('product', __('Product'));
         $show->field('type', __('Capacity Type'));
         $show->field('capacity', __('Capacity'));
         $show->field('quantity', __('Quantity'));
@@ -67,11 +66,9 @@ class ClientController extends AdminController
     {
         $form = new Form(new Client());
 
-        $form->text('parent_company', __('Parent company'));
         $form->text('company', __('Company'));
         $form->image('logo', __('Logo'));
         $form->text('address', __('Address'));
-        $form->text('product', __('Product'));
         $form->select('type', __('Capacity Type'))->options(function ($type){
             $capacityTypes = CapacityType::where('status', 1)->pluck('name', 'name');
             return $capacityTypes;
@@ -96,5 +93,23 @@ class ClientController extends AdminController
         });
 
         return $form;
+    }
+
+    public function clientListByXls(){
+        return Admin::content(function (Content $content) {
+            $content->header('Upload client list by xls');
+
+            $capacities = CapacityType::select('name')->where('status', 1)->get();
+            $content->view('client_list_by_xls', compact('capacities'));
+        });
+    }
+
+    public function clientListByXlsStore(){
+        $capacity = request()->get('capacity');
+        $fileName = time().'.'.request()->file->extension();
+        $fileName = public_path('uploads/').$fileName;
+
+        Excel::import(new ClientImport($capacity), request()->file('file')->store('temp'));
+        return redirect('/admin');
     }
 }
