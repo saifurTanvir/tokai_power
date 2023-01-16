@@ -46,7 +46,7 @@
   <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
     <a href="{{route('index')}}" class="logo d-flex align-items-center">
-      <img src="{{asset("images/546tokai.png")}}" alt="">
+      <img src="{{asset("uploads/images/546tokai.png")}}" alt="">
     </a>
 
     <nav id="navbar" class="navbar">
@@ -54,7 +54,7 @@
         @if(strpos(url()->current(), "job_post") || strpos(url()->current(), "about_us") ||
               strpos(url()->current(), "career") || strpos(url()->current(), "product_detail")
               || strpos(url()->current(), "client") || strpos(url()->current(), "portfolio")
-               || strpos(url()->current(), "job_detail"))
+               || strpos(url()->current(), "job_detail") || strpos(url()->current(), "factory"))
           <li><a class="nav-link scrollto active" href="{{route('index')}}">Home</a></li>
         @else
           <li><a class="nav-link scrollto" href="#hero">Home</a></li>
@@ -85,14 +85,15 @@
         @if(strpos(url()->current(), "job_post") || strpos(url()->current(), "about_us") ||
           strpos(url()->current(), "career") || strpos(url()->current(), "product_detail")
           || strpos(url()->current(), "client") || strpos(url()->current(), "portfolio")
-           || strpos(url()->current(), "job_detail"))
+           || strpos(url()->current(), "job_detail") || strpos(url()->current(), "factory"))
           <li><a class="nav-link scrollto" href="{{route('index').'#portfolio'}}">Products</a></li>
           <li><a class="nav-link scrollto" href="{{route('index').'#values'}}">Services</a></li>
           <li><a class="nav-link scrollto" href="{{route('portfolio')}}">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="{{route('factory')}}">Factory</a></li>
         @else
           <li><a class="nav-link scrollto" href="#portfolio">Products</a></li>
           <li><a class="nav-link scrollto" href="#values">Services</a></li>
-          <li><a class="nav-link scrollto" href="{{route('portfolio')}}">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="{{route('factory')}}">Factory</a></li>
         @endif
 
         @if(strpos(url()->current(), "client"))

@@ -22,4 +22,5 @@ Route::get('client', [HomeController::class, 'client'])->name('client');
 Route::get('career', [HomeController::class, 'career'])->name('career');
 Route::get('job_detail/{job}', [HomeController::class, 'job_detail'])->name('job_detail');
 Route::get('portfolio', [HomeController::class, 'portfolio'])->name('portfolio');
+Route::get('factory', [HomeController::class, 'factory'])->name('factory');
 

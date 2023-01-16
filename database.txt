@@ -375,3 +375,17 @@ CREATE TABLE `capacity_type`(
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    KEY(`id`)
 );
+
+14. factory
+
+CREATE TABLE `tokai_power`.`factory`(
+  `id` INT(11) AUTO_INCREMENT,
+  `title` varchar(500),
+  `image` varchar(500),
+  `status` TINYINT(5) DEFAULT 1,
+  `created_by` INT(11),
+  `updated_by` INT(11),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   KEY(`id`)
+);

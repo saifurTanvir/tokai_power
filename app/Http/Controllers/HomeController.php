@@ -8,6 +8,7 @@ use App\Models\Acheivement;
 use App\Models\Carosel;
 use App\Models\Client;
 use App\Models\CSR;
+use App\Models\Factory;
 use App\Models\FAQ;
 use App\Models\JobCircular;
 use App\Models\KeyPerson;
@@ -86,6 +87,12 @@ class HomeController extends Controller
         $portfolios = Portfolio::all();
 
         return view('portfolio', compact('portfolios'));
+    }
+
+    public function factory(){
+        $factories = Factory::all();
+
+        return view('factory', compact('factories'));
     }
 
 
